@@ -4,7 +4,7 @@ export const lightTheme = {
   text: '#000000',
   border: '#dddddd',
   buttonBg: '#007bff',
-  buttonText: '#ffffff'
+  buttonText: '#ffffff',
 };
 
 export const darkTheme = {
@@ -13,7 +13,7 @@ export const darkTheme = {
   text: '#ffffff',
   border: '#444444',
   buttonBg: '#0056b3',
-  buttonText: '#ffffff'
+  buttonText: '#ffffff',
 };
 
 export type ThemeType = typeof lightTheme;

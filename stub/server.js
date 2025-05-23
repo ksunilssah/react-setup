@@ -10,7 +10,7 @@ const port = 3001;
 // SSL options
 const options = {
   key: fs.readFileSync(path.join(__dirname, 'certs', 'key.pem')),
-  cert: fs.readFileSync(path.join(__dirname, 'certs', 'cert.pem'))
+  cert: fs.readFileSync(path.join(__dirname, 'certs', 'cert.pem')),
 };
 
 // Enable CORS and JSON body parsing

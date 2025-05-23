@@ -12,13 +12,13 @@ export const Counter = () => {
   return (
     <div style={{ background: theme.background, color: theme.text }}>
       <h2>Counter: {count}</h2>
-      <button 
+      <button
         onClick={() => dispatch(increment())}
         style={{ background: theme.buttonBg, color: theme.buttonText }}
       >
         +
       </button>
-      <button 
+      <button
         onClick={() => dispatch(decrement())}
         style={{ background: theme.buttonBg, color: theme.buttonText }}
       >

@@ -1,6 +1,11 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { createMemoryRouter, RouterProvider, createRoutesFromElements, Route } from 'react-router-dom';
+import {
+  createMemoryRouter,
+  RouterProvider,
+  createRoutesFromElements,
+  Route,
+} from 'react-router-dom';
 import { configureStore } from '@reduxjs/toolkit';
 import { ThemeProvider } from '../context/ThemeContext';
 import { Login } from './Login';
@@ -35,8 +40,8 @@ describe('Login Component', () => {
       initialEntries: ['/login'],
       initialIndex: 0,
       future: {
-        v7_startTransition: true
-      }
+        v7_startTransition: true,
+      },
     });
 
     return render(
@@ -68,12 +73,12 @@ describe('Login Component', () => {
   });
 
   it('shows loading state during api call', async () => {
-    (global.fetch as jest.Mock).mockImplementationOnce(() =>
-      new Promise(resolve => setTimeout(resolve, 100))
+    (global.fetch as jest.Mock).mockImplementationOnce(
+      () => new Promise((resolve) => setTimeout(resolve, 100))
     );
 
     renderLogin();
-    
+
     fireEvent.click(screen.getByRole('button', { name: 'Login' }));
     expect(screen.getByText('Loading...')).toBeInTheDocument();
   });
@@ -82,14 +87,19 @@ describe('Login Component', () => {
     (global.fetch as jest.Mock).mockImplementationOnce(() =>
       Promise.resolve({
         ok: true,
-        json: () => Promise.resolve({ id: 1, username: 'admin', token: 'fake-token' }),
+        json: () =>
+          Promise.resolve({ id: 1, username: 'admin', token: 'fake-token' }),
       })
     );
 
     renderLogin();
-    
-    fireEvent.change(screen.getByPlaceholderText('Username'), { target: { value: 'admin' } });
-    fireEvent.change(screen.getByPlaceholderText('Password'), { target: { value: 'password' } });
+
+    fireEvent.change(screen.getByPlaceholderText('Username'), {
+      target: { value: 'admin' },
+    });
+    fireEvent.change(screen.getByPlaceholderText('Password'), {
+      target: { value: 'password' },
+    });
     fireEvent.click(screen.getByRole('button', { name: 'Login' }));
 
     await waitFor(() => {
@@ -106,9 +116,13 @@ describe('Login Component', () => {
     );
 
     renderLogin();
-    
-    fireEvent.change(screen.getByPlaceholderText('Username'), { target: { value: 'wrong' } });
-    fireEvent.change(screen.getByPlaceholderText('Password'), { target: { value: 'wrong' } });
+
+    fireEvent.change(screen.getByPlaceholderText('Username'), {
+      target: { value: 'wrong' },
+    });
+    fireEvent.change(screen.getByPlaceholderText('Password'), {
+      target: { value: 'wrong' },
+    });
     fireEvent.click(screen.getByRole('button', { name: 'Login' }));
 
     await waitFor(() => {

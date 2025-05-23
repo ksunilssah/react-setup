@@ -10,7 +10,9 @@ export const Login = () => {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, isLoading, error } = useSelector((state: RootState) => state.auth);
+  const { user, isLoading, error } = useSelector(
+    (state: RootState) => state.auth
+  );
 
   useEffect(() => {
     if (user) {
